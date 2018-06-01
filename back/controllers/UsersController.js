@@ -13,7 +13,12 @@ class UsersController {
     res.render("auth/signup");
   }
   signup(req, res) {
-    db.Users.create(req.body).then(users => res.send("I am in POST signup"));
+    const { confirmPassword, ...user } = req.body;
+    db.Users.create(user)
+      .then(users => {
+        res.status(200).json({ flash: "User has been signed up !" });
+      })
+      .catch(err => console.log(err.message));
   }
 }
 

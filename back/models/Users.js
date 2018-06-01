@@ -9,10 +9,10 @@ const Users = (sequelize, DataTypes) => {
     {
       // fields
       id: { type: DataTypes.INTEGER, primaryKey: true },
+      lastname: { type: DataTypes.STRING },
       email: { type: DataTypes.STRING, unique: true, notEmpty: true },
       password: { type: DataTypes.STRING },
-      name: { type: DataTypes.STRING },
-      lasname: { type: DataTypes.STRING }
+      name: { type: DataTypes.STRING }
     },
     {
       timestamps: false

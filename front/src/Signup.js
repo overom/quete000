@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ajax from "./config";
 
 class Signup extends Component {
   constructor(props) {
@@ -8,7 +9,8 @@ class Signup extends Component {
       name: "",
       lastname: "",
       password: "",
-      confirmPassword: ""
+      confirmPassword: "",
+      flash: ""
     };
     this.updateEmailField = this.updateEmailField.bind(this);
     this.updatenameField = this.updatenameField.bind(this);
@@ -42,11 +44,36 @@ class Signup extends Component {
   handleSubmit(e) {
     e.preventDefault();
     console.log(this.state);
+
+    fetch("/auth/signup", {
+      method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json"
+      }),
+      body: JSON.stringify(this.state)
+    })
+      .then(res => res.json())
+
+      .then(
+        res => this.setState({ flash: res.flash }),
+        err => this.setState({ flash: err.flash })
+      );
+
+    // ajax
+    //   .post("/auth/signup", this.state)
+    //   .then(response => {
+    //     console.log(response);
+    //     res => res.json();
+    //   })
+    //   .catch(e =>
+    //     alert("Erreur dans la création, veuillez réessayer plus tard")
+    //   );
   }
 
   render() {
     return (
       <div className="formulaire">
+        <p>{this.state.flash}</p>
         <form action="" className="form-group" onSubmit={this.handleSubmit}>
           <label htmlFor="email">
             {" "}

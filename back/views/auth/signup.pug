@@ -3,15 +3,15 @@ extends ../layout
 block content
     form(method="POST", action="/auth/signup")
         .form-group
+            label(for='name') Name
+            input#name.form-control(type='text', name="name" placeholder='Votre nom')
+        .form-group
+            label(for='lastname') Lastname
+            input#lastname.form-control(type='text', name="lastname" placeholder='Votre prenom')
+        .form-group
             label(for='exampleInputEmail1') Email address
             input#exampleInputEmail1.form-control(type='email',name="email", aria-describedby='emailHelp', placeholder='Enter email')
         .form-group
             label(for='exampleInputPassword1') Password
             input#exampleInputPassword1.form-control(type='password',name="password", placeholder='Password')
-        .form-group
-            label(for='name') Name
-            input#name.form-control(type='text', name="name" placeholder='Votre nom')
-        .form-group
-            label(for='lastname') lastname
-            input#lastname.form-control(type='text', name="lastname" placeholder='Votre prenom')
         button.btn.btn-primary(type='submit') Submit
